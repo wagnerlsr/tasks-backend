@@ -4,11 +4,12 @@ pipeline {
     
     stages {
         
-        stage ('Just Test') {
+        stage ('Build Backend') {
             
             steps {
                 
-                sh 'echo Deu certo!'
+                sh 'mv clean package -DskipTest=true'
+                
                 
             }
             
