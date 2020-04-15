@@ -8,8 +8,8 @@ pipeline {
             
             steps {
                 
-                sh 'mv clean package -DskipTest=true'
-                
+                sh 'mv clean package -DskipTests=true'
+
                 
             }
             
