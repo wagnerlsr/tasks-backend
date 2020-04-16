@@ -51,8 +51,10 @@ pipeline {
 
         stage ('API Test') {
             steps {
-                git 'https://github.com/wagnerlsr/tasks-api-test.git'
-                sh 'mvn test'
+                dir('api-test') {
+                    git 'https://github.com/wagnerlsr/tasks-api-test.git'
+                    sh 'mvn test'
+                }
             }
         }
     }
