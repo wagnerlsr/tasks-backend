@@ -57,5 +57,16 @@ pipeline {
                 }
             }
         }
+
+        stage ('Deploy Frontend') {
+            steps {
+                dir('frontend') {
+                    git 'https://github.com/wagnerlsr/tasks-frontend.git'
+                    sh 'mvn clean package'
+                    deploy adapters: [tomcat9(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8888/')], contextPath: 'tasks', war: 'target/tasks.war'
+                }
+            }
+        }
+
     }
 }
