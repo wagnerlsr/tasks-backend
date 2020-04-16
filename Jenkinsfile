@@ -1,6 +1,11 @@
 pipeline {
     
     agent any
+
+    tools { 
+        maven 'Maven 3.6.3' 
+        jdk 'jdk11' 
+    }
     
     stages {
         
@@ -8,7 +13,11 @@ pipeline {
             
             steps {
                 
-                sh 'mvn clean package -DskipTests=true'
+                sh '''
+                
+                  mvn clean package -DskipTests=true
+                
+                '''
 
                 
             }
