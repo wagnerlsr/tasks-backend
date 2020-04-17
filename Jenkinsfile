@@ -4,7 +4,7 @@ pipeline {
     
     environment {
         PATH = "$PATH:/usr/local/bin"
-        COMPOSE_PROJECT_NAME = "${env.JOB_NAME}-${env.BUILD_ID}"
+        COMPOSE_FILE = "docker-compose.yml"
     }
 
     tools { 
@@ -84,7 +84,8 @@ pipeline {
 
         stage ('Deploy Prod') {
             steps {
-                docker.build('taskscounter')
+                sh 'docker-compose build'
+                sh 'docker-compose up -d'
             }
         }
 
