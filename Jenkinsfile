@@ -4,6 +4,7 @@ pipeline {
     
     environment {
         PATH = "$PATH:/usr/local/bin"
+        COMPOSE_PROJECT_NAME = "${env.JOB_NAME}-${env.BUILD_ID}"
     }
 
     tools { 
@@ -83,9 +84,7 @@ pipeline {
 
         stage ('Deploy Prod') {
             steps {
-                sh 'docker-machine start default'
-                sh 'docker-compose build'
-                sh 'docker-compose up -d'
+                docker.build('taskscounter')
             }
         }
 
